@@ -1,7 +1,7 @@
 plugins {
     id 'java'
 }
-
+compileJava.options.encoding = 'UTF-8'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -17,14 +17,14 @@ dependencies {
 
 jar {
     manifest {
-        attributes "Main-Class": "FirstTry"
+        attributes "Main-Class": "Main"
     }
 }
 
 
 task customFatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'UI'
+        attributes 'Main-Class': 'Main'
     }
     baseName = 'all-in-one-jar'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }

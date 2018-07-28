@@ -15,7 +15,8 @@ public class LineStickerCatcher {
         for (String fileName : pages.keySet()) {
             String URL = pages.get(fileName);
             new File("FileOutput").mkdir();
-            try (FileWriter output = new FileWriter(new File(String.format("FileOutput/%s.txt", fileName.substring(fileName.length() - 20))))) {
+            String fileNameNew = fileName.substring(fileName.indexOf("！"));
+            try (FileWriter output = new FileWriter(new File(String.format("FileOutput/%s.txt", fileNameNew)))) {
                 Document docIn = Jsoup.connect(URL).get();
                 String title = docIn.title();
                 System.out.println(title);
