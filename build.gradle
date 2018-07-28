@@ -14,3 +14,19 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.jsoup:jsoup:1.11.3'
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "FirstTry"
+    }
+}
+
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'UI'
+    }
+    baseName = 'all-in-one-jar'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

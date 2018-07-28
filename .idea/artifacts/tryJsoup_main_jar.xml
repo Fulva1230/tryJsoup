@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="tryJsoup_main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/tryJsoup_main_jar</output-path>
+    <root id="root">
+      <element id="archive" name="tryJsoup_main.jar">
+        <element id="module-output" name="tryJsoup_main" />
+      </element>
+      <element id="library" level="project" name="Gradle: org.jsoup:jsoup:1.11.3" />
+    </root>
+  </artifact>
+</component>
