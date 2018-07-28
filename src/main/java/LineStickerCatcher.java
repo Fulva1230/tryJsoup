@@ -8,14 +8,22 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LineStickerCatcher {
     public static void catchLineSticker(JTextArea textArea) {
+        final String regex = "[A-Za-z]+\\.*\\s*\\d+,\\s*\\d+";
+        Pattern patternOfFileName = Pattern.compile(regex);
         HashMap<String, String> pages = getURLs();
         for (String fileName : pages.keySet()) {
             String URL = pages.get(fileName);
             new File("FileOutput").mkdir();
-            String fileNameNew = fileName.substring(fileName.indexOf("！"));
+            String fileNameNew = fileName.substring(fileName.indexOf("！") + 1);
+            Matcher matcher = patternOfFileName.matcher(fileName);
+            if(matcher.find()){
+                fileNameNew = matcher.group();
+            }
             try (FileWriter output = new FileWriter(new File(String.format("FileOutput/%s.txt", fileNameNew)))) {
                 Document docIn = Jsoup.connect(URL).get();
                 String title = docIn.title();
