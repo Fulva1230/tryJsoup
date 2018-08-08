@@ -21,7 +21,7 @@ public class LineStickerCatcher {
             new File("FileOutput").mkdir();
             String fileNameNew = fileName.substring(fileName.indexOf("！") + 1);
             Matcher matcher = patternOfFileName.matcher(fileName);
-            if(matcher.find()){
+            if (matcher.find()) {
                 fileNameNew = matcher.group();
             }
             try (FileWriter output = new FileWriter(new File(String.format("FileOutput/%s.txt", fileNameNew)))) {
@@ -30,7 +30,7 @@ public class LineStickerCatcher {
                 System.out.println(title);
                 Elements countryNodes = docIn.getElementsByAttributeValue("class", "country");
                 for (Element e : countryNodes) {
-                    String outputString = String.format("Country: %s ; URL: %s\n",
+                    String outputString = String.format("Country: %s ; URL: %s%n",
                             e.text(),
                             e.nextElementSibling().text());
                     textArea.append(outputString);
@@ -38,7 +38,7 @@ public class LineStickerCatcher {
                     output.write(outputString);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+            
             }
         }
     }

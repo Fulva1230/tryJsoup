@@ -1,6 +1,10 @@
 plugins {
     id 'java'
 }
+
+apply plugin: 'application'
+mainClassName = "Main"
+
 compileJava.options.encoding = 'UTF-8'
 version '1.0-SNAPSHOT'
 
